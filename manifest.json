@@ -6,7 +6,10 @@
 	//"description": "", // TODO
 	"content_scripts": [{
 		"matches": ["*://twitter.com/*"],
-		"js": ["main.js"],
+		"js": [
+			"mutemanager.js",
+			"main.js"
+		],
 		"run_at": "document_end"
 	}]
 }
