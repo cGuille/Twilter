@@ -3,13 +3,46 @@
 
     console.log("started");
 
-    var muted = {
-        accounts: [
-            // "cGuilleDev"
-        ],
-        keywords: [
-            // "test"
-        ]
+    function MuteManager() {
+        this.muted = {
+            accounts: [],
+            keywords: []
+        };
+    }
+
+    MuteManager.prototype.muteAccount = function(account_name) {
+        if (this.muted.accounts.indexOf(account_name) === -1) {
+            this.muted.accounts.push(account_name);
+        }
+
+        return this;
+    };
+
+    MuteManager.prototype.muteKeyword = function(keyword) {
+        if (this.muted.keywords.indexOf(keyword) === -1) {
+            this.muted.keywords.push(keyword);
+        }
+
+        return this;
+    };
+
+    MuteManager.prototype.isMutedAccount = function(account_name) {
+        return this.muted.accounts.indexOf(account_name) !== -1;
+    };
+
+    // Careful, this method uses early return.
+    // TODO: use another method (regex?) to provide case insensitive research
+    MuteManager.prototype.containsMutedKeyword = function(content) {
+        var i,
+            len;
+
+        for (i = 0, len = this.muted.keywords.length; i < len; i += 1) {
+            if (content.indexOf(this.muted.keywords[i]) !== -1) {
+                return true;
+            }
+        }
+
+        return false;
     };
 
     function Tweet(id, author, content) {
@@ -18,26 +51,17 @@
         this.content = content;
     }
 
-    Tweet.prototype.isBlackListed = function(muted) {
-        var i,
-            len;
-
-        if (muted.accounts.indexOf(this.author) !== -1) {
-            return true;
-        }
-
-        for (i = 0, len = muted.keywords.length; i < len; i += 1) {
-            if (this.content.indexOf(muted.keywords[i]) !== -1) {
-                return true;
-            }
-        }
-
-        return false;
+    Tweet.prototype.isBlackListed = function(mute_manager) {
+        return mute_manager.isMutedAccount(this.author) || mute_manager.containsMutedKeyword(this.content);
     };
 
     Tweet.prototype.toString = function() {
         return JSON.stringify(this);
     };
+
+    var mute_manager = new MuteManager().
+            muteAccount("cGuilleDev").
+            muteKeyword("mute-me");
 
     document.getElementById('stream-items-id').addEventListener(
         "DOMNodeInserted",
@@ -57,7 +81,7 @@
                 tweet_div.querySelector("p.js-tweet-text").textContent
             );
 
-        if (tweet.isBlackListed(muted)) {
+        if (tweet.isBlackListed(mute_manager)) {
             tweet_div.parentNode.removeChild(tweet_div);
             console.log("Removed :\n" + tweet.toString());
         }
