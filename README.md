@@ -1,4 +1,3 @@
-
 What is Twilter ?
 =================
 
@@ -25,4 +24,4 @@ When it will be ready, this project will be released under the GNU General Publi
 Privacy
 =======
 
-Once activated, Twilter can access any content there is on the Twitter web page you are visiting. We will not keep any trace of it, and only use this access to provide you the service this project has been designed for. The source code is freely available so anybody with the well suited technical skills can check that we are not cheating on you. However, if you deal with sensitive contents, you may not use any third party stuff.
+Once activated, Twilter can access any content there is on the Twitter web page you are visiting. We will not keep any trace of it, and only use this access to provide you the service this project has been designed for. The source code is freely available so anybody with the well suited technical skills can check that we are not cheating on you. However, if you deal with sensitive contents, you may not use any third party stuff like this.
