@@ -3,8 +3,8 @@
 
     console.log("started");
 
-    function MuteManager() {
-        this.muted = {
+    function MuteManager(backup) {
+        this.muted = backup || {
             accounts: [],
             keywords: []
         };
