@@ -1,11 +1,13 @@
-// Todo: gérer les messages pour récupérer la conf depuis le localStorage de l'extension
 {
-	"format_version": 1,
-	"name": "Twilter",
+	"format_version": 1
+	,"name": "Twilter"
 	//"icons": { "128": "" }, // TODO
-	"version": "0.1",
+	,"version": "0.1"
 	//"description": "", // TODO
-	"content_scripts": [{
+	,"background": {
+		"scripts": ["background.js"]
+	}
+	,"content_scripts": [{
 		"matches": ["*://twitter.com/*"],
 		"js": [
 			"tweet.js",

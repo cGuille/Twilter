@@ -4,17 +4,13 @@
     // Note: For now, this script only take care of the Twitter home timeline.
 
     // Note: This backup object is for dev purpose only. It will eventually be fetch in the localStorage.
-    var mute_manager = new MuteManager({
-            accounts: [
-                //"cGuilleDev"
-                // , ""
-            ],
-            keywords: [
-                "test"
-                // , ""
-            ]
-        }),
+    var mute_manager = new MuteManager(),
         container_elt = document.getElementById('stream-items-id');
+
+    chrome.extension.sendRequest({}, function (response) {
+        mute_manager.backup = response.backup;
+        console.log(mute_manager.backup);
+    });
 
     // Scanning the existing DOM:
     (function () {
