@@ -1,11 +1,19 @@
-(function (MuteManager) {
+(function (Tweet, MuteManager) {
     "use strict";
 
-    var mute_manager = new MuteManager(localStorage.muted);
+    var mute_manager = new MuteManager({
+        accounts: [
+            "cGuilleDev"
+            // , ""
+        ],
+        keywords: [
+            "test"
+            // , ""
+        ]
+    });
 
-    console.log("started");
-
-
+// Todo: scanner le DOM au chargement
+// Todo: gérer les messages pour récupérer la conf depuis le localStorage de l'extension
     document.getElementById('stream-items-id').addEventListener(
         "DOMNodeInserted",
         function(e) {
@@ -28,18 +36,4 @@
             console.log("Removed :\n" + tweet.toString());
         }
     }
-
-    function Tweet(id, author, content) {
-        this.id = id;
-        this.author = author;
-        this.content = content;
-    }
-
-    Tweet.prototype.isBlackListed = function(mute_manager) {
-        return mute_manager.isMutedAccount(this.author) || mute_manager.containsMutedKeyword(this.content);
-    };
-
-    Tweet.prototype.toString = function() {
-        return JSON.stringify(this);
-    };
-}) (window.Twilter.MuteManager);
+}) (window.Twilter.Tweet, window.Twilter.MuteManager);
