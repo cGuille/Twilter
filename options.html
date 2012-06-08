@@ -1,0 +1,133 @@
+<html>
+    <head>
+        <title>Twilter settings</title>
+        <style type="text/css">
+
+fieldset {
+    border: none;
+}
+fieldset.options-list {
+    display: inline-block;
+}
+
+        </style>
+    </head>
+
+    <body>
+        <div id="muted-accounts-settings">
+            <h3>Muted accounts</h3>
+            <fieldset class="options-list" id="muted-accounts-options-list"></fieldset>
+            <fieldset class="add-form">
+                <input type="text" class="add-field" id="add-muted-account" />
+                <button class="add-button">Mute account</button>
+            </fieldset>
+        </div>
+
+        <div id="muted-keywords-settings">
+            <h3>Muted keywords</h3>
+            <fieldset class="options-list" id="muted-keywords-options-list"></fieldset>
+            <fieldset class="add-form">
+                <input type="text" class="add-field" id="add-muted-keyword" />
+                <button class="add-button">Mute keyword</button>
+            </fieldset>
+        </div>
+        <button id="save-btn">Save</button>
+    </body>
+
+    <script src="mutemanager.js"></script>
+    <script>
+var input_add_account = document.querySelector("input#add-muted-account"),
+    accounts_list_elt = document.querySelector("fieldset#muted-accounts-options-list"),
+
+    input_add_keyword = document.querySelector("input#add-muted-keyword"),
+    keywords_list_elt = document.querySelector("fieldset#muted-keywords-options-list"),
+
+    mute_manager,
+    script;
+
+// Loading MuteManager
+/*
+script = document.createElement("script");
+script.src = chrome.extension.getURL("mutemanager.js");
+document.body.appendChild(script);
+*/
+
+console.log(JSON.parse(localStorage.muted));
+mute_manager = new Twilter.MuteManager(JSON.parse(localStorage.muted));
+
+// Managing accounts settings
+document.querySelector("div#muted-accounts-settings fieldset.add-form button.add-button").onclick = add_account;
+input_add_account.onkeypress = function (e) {
+    if (e.keyCode === 13) {
+        add_account();
+    }
+};
+
+function add_account() {
+    var item_elt = document.createElement("div"),
+        label_elt = document.createElement("label"),
+        btn_elt = document.createElement("button"),
+        span_elt = document.createElement("span"),
+        br_elt = document.createElement("br");
+        text_node = document.createTextNode(" ");
+
+    console.log(mute_manager);
+    if (mute_manager.muteAccount(input_add_account.value.trim())) {
+        btn_elt.textContent = "supprimer";
+        btn_elt.onclick = function () {
+            accounts_list_elt.removeChild(item_elt);
+        };
+        label_elt.appendChild(btn_elt);
+
+        span_elt.textContent = input_add_account.value.trim();
+
+        item_elt.appendChild(label_elt);
+        item_elt.appendChild(text_node);
+        item_elt.appendChild(span_elt);
+        item_elt.appendChild(br_elt);
+        accounts_list_elt.appendChild(item_elt);
+
+        input_add_account.value = "";
+    }
+}
+
+document.querySelector("div#muted-keywords-settings fieldset.add-form button.add-button").onclick = add_keyword;
+input_add_keyword.onkeypress = function (e) {
+    if (e.keyCode === 13) {
+        add_keyword();
+    }
+};
+
+
+// Managing keywords settings
+function add_keyword() {
+    var item_elt = document.createElement("div"),
+        label_elt = document.createElement("label"),
+        btn_elt = document.createElement("button"),
+        span_elt = document.createElement("span"),
+        br_elt = document.createElement("br");
+        text_node = document.createTextNode(" ");
+
+    btn_elt.textContent = "supprimer";
+    btn_elt.onclick = function () {
+        keywords_list_elt.removeChild(item_elt);
+    };
+    label_elt.appendChild(btn_elt);
+
+    span_elt.textContent = input_add_keyword.value.trim();
+
+    item_elt.appendChild(label_elt);
+    item_elt.appendChild(text_node);
+    item_elt.appendChild(span_elt);
+    item_elt.appendChild(br_elt);
+    keywords_list_elt.appendChild(item_elt);
+
+    input_add_keyword.value = "";
+}
+
+document.querySelector("button#save-btn").onclick = function () {
+    localStorage.muted = JSON.stringify(mute_manager.muted);
+    console.log(localStorage.muted);
+};
+    </script>
+</html>
