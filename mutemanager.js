@@ -38,21 +38,26 @@
     };
 
     MuteManager.prototype.isMutedAccount = function(account_name) {
-        return this.muted.accounts.indexOf(account_name) !== -1;
+        var regex = new RegExp("^" + account_name + "$", "i");
+
+        return !this.muted.accounts.every(
+            function (muted_account) {
+                return muted_account.search(regex) === -1;
+            },
+            this
+        );
     };
 
-    // Careful, this method uses early return.
-    // TODO: use another method (regex?) to provide case insensitive research
+    //!\ This method uses early return.
     MuteManager.prototype.containsMutedKeyword = function(content) {
         var i,
             len;
 
         for (i = 0, len = this.muted.keywords.length; i < len; i += 1) {
-            if (content.indexOf(this.muted.keywords[i]) !== -1) {
+            if (content.search(new RegExp(this.muted.keywords[i], "i")) !== -1) {
                 return true;
             }
         }
-
         return false;
     };
 }());
