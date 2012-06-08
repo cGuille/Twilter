@@ -54,7 +54,7 @@
             len;
 
         for (i = 0, len = this.muted.keywords.length; i < len; i += 1) {
-            if (content.search(new RegExp(this.muted.keywords[i], "i")) !== -1) {
+            if (content.search(new RegExp("\\b" + this.muted.keywords[i] + "\\b", "i")) !== -1) {
                 return true;
             }
         }
