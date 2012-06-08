@@ -1,3 +1,4 @@
+// Todo: gérer les messages pour récupérer la conf depuis le localStorage de l'extension
 {
 	"format_version": 1,
 	"name": "Twilter",

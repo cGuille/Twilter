@@ -1,8 +1,6 @@
 (function () {
     "use strict";
 
-console.log("MM");
-
     if (! window.Twilter) {
         window.Twilter = {};
     }
@@ -10,10 +8,15 @@ console.log("MM");
     window.Twilter.MuteManager = MuteManager;
 
     function MuteManager(backup) {
-        this.muted = backup || {
-            accounts: [],
-            keywords: []
-        };
+        this.muted = backup || {};
+
+        if (!this.muted.accounts) {
+            this.muted.accounts = [];
+        }
+
+        if (!this.muted.keywords) {
+            this.muted.keywords = [];
+        }
     }
 
     MuteManager.prototype.muteAccount = function(account_name) {
@@ -52,4 +55,4 @@ console.log("MM");
 
         return false;
     };
-}) ();
+}());
