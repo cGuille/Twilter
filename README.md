@@ -9,7 +9,8 @@ It does not deal with Twitter API but only remove concerned tweets from the DOM 
 This project has just started (June 3th 2012) and is not available for real use yet.
 
 What Twilter do for now:
-  - immediately remove inserted tweets posted by the muted accounts or containing the muted keywords.
+  - scan the DOM on load to remove tweets posted by the muted accounts or containing a muted keyword ;
+  - scan every inserted tweets to remove those which has been posted by a muted account or which contain a muted keyword.
 
 Next steps:
   - use background page + localStorage + options page to set the muted accounts & keywords ;
