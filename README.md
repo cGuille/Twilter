@@ -12,7 +12,8 @@ What Twilter do for now:
   - immediately remove inserted tweets posted by the muted accounts or containing the muted keywords.
 
 Next steps:
-  - browse the timeline to remove concerned tweets at the script launch ;
+  - use background page + localStorage + options page to set the muted accounts & keywords ;
+  - make the keyword research case insensitive ;
   - make it work on the connect tab & profile page ;
   - add functionnalities to make the extension handy:
     - menu items to mute / unmute people & keywords ;
