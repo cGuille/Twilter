@@ -1,0 +1,5 @@
+// Message format :
+{
+	"type": "<message type>"
+	"data": {}
+}
