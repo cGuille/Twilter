@@ -27,6 +27,8 @@ How to use Twilter
   - 3) Your browser inform you that Twilter can access to your data on twitter.com, chose "Add" to continue ;
   - 4) Twilter is now installed. You can manage your muted accounts & keyword from the extension option page, available from your browser extension page.
 
+If you already had a Twitter tab open before installing Twilter, you'll have to reload it !
+
 Licence
 =======
 
