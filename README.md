@@ -6,19 +6,26 @@ What is Twilter ?
 Twilter is a web browser extension for Chrome / Chromium designed to make you able to mute Twitter accounts or keywords on Twitter web interface.
 It does not deal with Twitter API but only remove concerned tweets from the DOM as soon as they are inserted.
 
-This project has just started (June 3th 2012) and is not available for real use yet.
+This project has started on June 3th 2012.
+You can now use it but keep in mind that it is the first release, so it may contain some bugs.
 
 What Twilter do for now:
   - scan the DOM on load to remove tweets posted by the muted accounts or containing a muted keyword ;
-  - scan every inserted tweets to remove those which has been posted by a muted account or which contain a muted keyword.
+  - scan every inserted tweets to remove those which has been posted by a muted account or which contain a muted keyword ;
+  - muted accounts & keywords can be added or removed from the options page.
 
 Next steps:
-  - use background page + localStorage + options page to set the muted accounts & keywords ;
-  - make the keyword research case insensitive ;
   - make it work on the connect tab & profile page ;
   - add functionnalities to make the extension handy:
     - menu items to mute / unmute people & keywords ;
     - …
+
+How to use Twilter
+======================
+  - 1) [Click here to install Twilter](https://github.com/downloads/cGuille/Twilter/Twilter.crx) ;
+  - 2) Your browser asks you if you really want to install Twilter, chose "continue" to continue ;
+  - 3) Your browser inform you that Twilter can access to your data on twitter.com, chose "Add" to continue ;
+  - 4) Twilter is now installed. You can manage your muted accounts & keyword from the extension option page, available from your browser extension page.
 
 Licence
 =======
