@@ -8,6 +8,7 @@ It does not deal with Twitter API but only remove concerned tweets from the DOM 
 
 This project has started on June 3th 2012.
 You can now use it but keep in mind that it is the first release, so it may contain some bugs.
+**update: the project has stopped and since Twitter seems to have changed their HTML structure, the app is no more efficient. Future support is currently not planned.**
 
 What Twilter do for now:
   - scan the DOM on load to remove tweets posted by the muted accounts or containing a muted keyword ;
