@@ -17,8 +17,8 @@ What Twilter do for now:
 
 How to use Twilter
 ==================
-  - 1) [Click here to install Twilter](https://github.com/downloads/cGuille/Twilter/Twilter.crx) ;
-  - 2) Your browser asks you if you really want to install Twilter, chose "continue" to continue ;
+  - 1) [Download Twilter here (Right click > Save file)](https://github.com/downloads/cGuille/Twilter/Twilter.crx) ;
+  - 2) Go to chrome://extensions/ , drag-and-drop Twilter.crx into it ;
   - 3) Your browser inform you that Twilter can access to your data on twitter.com, chose "Add" to continue ;
   - 4) Twilter is now installed. You can manage your muted accounts & keyword from the extension option page, available from your browser extension page.
 
