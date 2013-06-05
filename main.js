@@ -47,11 +47,12 @@
 
     // This is how we handle each tweet
     function handle(tweet_div) {
-        var tweet = new Tweet(
-                tweet_div.getAttribute("data-item-id"),
-                tweet_div.getAttribute("data-screen-name"),
-                tweet_div.querySelector("p.js-tweet-text").textContent
-            );
+        var tweet = new Tweet({
+                id: tweet_div.getAttribute("data-item-id"),
+                author: tweet_div.getAttribute("data-screen-name"),
+                retweeter: tweet_div.getAttribute("data-retweeter"),
+                content: tweet_div.querySelector("p.js-tweet-text").textContent
+            });
 
         if (tweet.isBlackListed(mute_manager)) {
             tweet_div.parentNode.removeChild(tweet_div);

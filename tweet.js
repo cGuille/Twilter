@@ -7,14 +7,15 @@
 
     window.Twilter.Tweet = Tweet;
 
-    function Tweet(id, author, content) {
-        this.id = id;
-        this.author = author;
-        this.content = content;
+    function Tweet(data) {
+        this.id = data.id;
+        this.author = data.author;
+        this.retweeter = data.retweeter;
+        this.content = data.content;
     }
 
     Tweet.prototype.isBlackListed = function(mute_manager) {
-        return mute_manager.isMutedAccount(this.author) || mute_manager.containsMutedKeyword(this.content);
+        return mute_manager.isMutedAccount(this.author) || mute_manager.isMutedAccount(this.retweeter) || mute_manager.containsMutedKeyword(this.content);
     };
 
     Tweet.prototype.toString = function() {
